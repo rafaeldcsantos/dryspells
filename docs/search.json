@@ -1,0 +1,62 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "About",
+    "section": "",
+    "text": "Important\n\n\n\nWe really need a background story here!",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "ml1.html",
+    "href": "ml1.html",
+    "title": "Machine Learning (Part 1)",
+    "section": "",
+    "text": "huh",
+    "crumbs": [
+      "Machine Learning (Part 1)"
+    ]
+  },
+  {
+    "objectID": "preprocessing.html",
+    "href": "preprocessing.html",
+    "title": "Preprocessing",
+    "section": "",
+    "text": "In this notebook we will show how to preprocess and enrich the original data.",
+    "crumbs": [
+      "Preprocessing"
+    ]
+  },
+  {
+    "objectID": "eda.html",
+    "href": "eda.html",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "Exploratory Data Analysis",
+    "crumbs": [
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "index.html#these-notebooks-are-about",
+    "href": "index.html#these-notebooks-are-about",
+    "title": "About",
+    "section": "",
+    "text": "Important\n\n\n\nWe really need a background story here!",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "preprocessing.html#original-data",
+    "href": "preprocessing.html#original-data",
+    "title": "Preprocessing",
+    "section": "Original Data",
+    "text": "Original Data\n\n\n\n\n\n\nImportant\n\n\n\nIt would be really nice to get some background on the data too. Where did it come from? Are there references?\n\n\nFirst we import the libraries we need.\n\nimport pandas as pd \nfrom IPython.display import display\n\nLet’s read the data!\n\npath = \"Resources/Data/\"\ndf = pd.read_csv(path+\"TresMariasPrec+MJOindex.19830101to20240107.csv\")\n\nHow many rows and columns did we read? How does the data looks like?\n\nprint(df.shape)\ndisplay(df.head()) \n\n(14982, 8)\n\n\n\n\n\n\n\n\n\n\nUnnamed: 0\nDate\nRMM1\nRMM2\nPhase\nAmplitude\nTresMariasPrec.Rainfall\nPhaseName\n\n\n\n\n0\n3137\n1983-01-01\n0.779252\n-0.44277\n4\n0.896260\n22.1\nMC4\n\n\n1\n3138\n1983-01-02\n0.636609\n-0.44866\n4\n0.778824\n15.6\nMC4\n\n\n2\n3139\n1983-01-03\n0.743517\n-0.42285\n4\n0.855349\n22.2\nMC4\n\n\n3\n3140\n1983-01-04\n0.738661\n-0.30370\n4\n0.798657\n11.7\nMC4\n\n\n4\n3141\n1983-01-05\n0.624721\n-0.20244\n4\n0.656702\n15.8\nMC4\n\n\n\n\n\n\n\n\nHere’s a basic description of the fields:\n\nFirst column (unnamed): not important, we’ll drop it soon.\nDate: date\nRMM1: the first component of the Wheeler and Hendon (2004) index (see details below)\nRMM2: the second component of the RMM index (see details below)\nPhase: the phase of the Madden-Julian Oscillation (MJO). The phase indicates on which sector around the equator the convective wave of the MJO is positioned. There are 8 sectors/phases. This column is directly related to the eight column.\nAmplitude: the amplitude of the convection/supressing phase of the MJO. The greater the amplitude the stronger is the convection/supressing. Where there is either convection or supression depends on the phase.\nTresMariasPrec.Rainfall: average daily precipitation over the Três Marias watershed\nPhaseName: the phases as categories rather than numbers.\n\n(Wheeler and Hendon 2004) said…\nLet’s clean up the data a bit: remove the first column…\n\ndf.drop('Unnamed: 0', axis=1, inplace=True)\n\nDate is a very important field, we need to take special care of it. For our purposes it should be the index of the data frame and we need to ensure it is of type datetime64.\n\ndf['Date'] = pd.to_datetime(df['Date'])\ndf.set_index('Date', inplace=True, drop=False)\n\nLet’s get some description (basic statistics) on each field of the data frame (note that only values for the numeric fields will be shown):\n\ndf.describe()\n\n\n\n\n\n\n\n\n\nDate\nRMM1\nRMM2\nPhase\nAmplitude\nTresMariasPrec.Rainfall\n\n\n\n\ncount\n14982\n14982.000000\n14982.000000\n14982.000000\n14982.000000\n14982.000000\n\n\nmean\n2003-07-05 12:00:00\n-0.004001\n-0.004027\n4.416033\n1.282571\n3.793365\n\n\nmin\n1983-01-01 00:00:00\n-4.179793\n-3.362480\n1.000000\n0.013328\n0.000000\n\n\n25%\n1993-04-03 06:00:00\n-0.688954\n-0.702844\n2.000000\n0.775396\n0.000000\n\n\n50%\n2003-07-05 12:00:00\n-0.009247\n-0.033103\n4.000000\n1.204739\n0.400000\n\n\n75%\n2013-10-05 18:00:00\n0.701518\n0.675766\n6.000000\n1.715202\n4.500000\n\n\nmax\n2024-01-07 00:00:00\n3.940610\n4.026421\n8.000000\n4.820095\n122.600000\n\n\nstd\nNaN\n1.019313\n1.027526\n2.287900\n0.670629\n7.133328\n\n\n\n\n\n\n\n\n\nphaseCT = pd.crosstab(df['Phase'], df['PhaseName'])\ndisplay(phaseCT)\n\n\n\n\n\n\n\n\nPhaseName\nIO2\nIO3\nMC4\nMC5\nWHA1\nWP6\nWP7\nWP8\n\n\nPhase\n\n\n\n\n\n\n\n\n\n\n\n\n1\n0\n0\n0\n0\n1958\n0\n0\n0\n\n\n2\n2038\n0\n0\n0\n0\n0\n0\n0\n\n\n3\n0\n1816\n0\n0\n0\n0\n0\n0\n\n\n4\n0\n0\n1875\n0\n0\n0\n0\n0\n\n\n5\n0\n0\n0\n1871\n0\n0\n0\n0\n\n\n6\n0\n0\n0\n0\n0\n1871\n0\n0\n\n\n7\n0\n0\n0\n0\n0\n0\n1826\n0\n\n\n8\n0\n0\n0\n0\n0\n0\n0\n1727",
+    "crumbs": [
+      "Preprocessing"
+    ]
+  }
+]

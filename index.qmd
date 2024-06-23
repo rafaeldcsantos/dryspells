@@ -1,6 +1,11 @@
 ---
-title: "Yo!"
+title: "About"
 format: html
+lightbox: true
 ---
 
-# Yo Yo'self.
+## These notebooks are about...
+
+::: {.callout-important}
+We really need a background story here!
+:::

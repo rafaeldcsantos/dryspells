@@ -1,2 +1,27 @@
 project:
+  type: website
   output-dir: docs
+
+
+website:
+  title: "DrySpells"
+  favicon: "Resources/Images/dryspell.png" 
+  sidebar:
+    logo: "Resources/Images/dryspell.png"
+    style: "docked"
+    search: true
+    contents:
+      - index.qmd  
+      - preprocessing.qmd  
+      - eda.qmd  
+      - ml1.qmd  
+
+format:
+  html:
+    theme:
+      - spacelab
+    toc: true
+    css: Resources/CSS/custom.css
+    bibliography: dryspell.bib
+    date: last-modified
+    date-format: long

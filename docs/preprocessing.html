@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2024-06-23">
 
-<title>DrySpells - About</title>
+<title>DrySpells - Preprocessing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,10 +21,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,6 +122,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="Resources/CSS/custom.css">
@@ -82,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">About</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./preprocessing.html">Preprocessing</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -109,13 +166,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preprocessing.html" class="sidebar-item-text sidebar-link">
+  <a href="./preprocessing.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Preprocessing</span></a>
   </div>
 </li>
@@ -141,7 +198,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#these-notebooks-are-about" id="toc-these-notebooks-are-about" class="nav-link active" data-scroll-target="#these-notebooks-are-about">These notebooks are about…</a></li>
+  <li><a href="#original-data" id="toc-original-data" class="nav-link active" data-scroll-target="#original-data">Original Data</a></li>
   </ul>
 </nav>
     </div>
@@ -150,7 +207,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">Preprocessing</h1>
 </div>
 
 
@@ -173,8 +230,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="these-notebooks-are-about" class="level2">
-<h2 class="anchored" data-anchor-id="these-notebooks-are-about">These notebooks are about…</h2>
+<p>In this notebook we will show how to preprocess and enrich the original data.</p>
+<section id="original-data" class="level2">
+<h2 class="anchored" data-anchor-id="original-data">Original Data</h2>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -185,14 +243,368 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We really need a background story here!</p>
+<p>It would be really nice to get some background on the data too. Where did it come from? Are there references?</p>
 </div>
 </div>
+<p>First we import the libraries we need.</p>
+<div id="9a917af1" class="cell custompython" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s read the data!</p>
+<div id="3ea1cfef" class="cell custompython" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"Resources/Data/"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(path<span class="op">+</span><span class="st">"TresMariasPrec+MJOindex.19830101to20240107.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>How many rows and columns did we read? How does the data looks like?</p>
+<div id="71785f89" class="cell custompython" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.shape)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>display(df.head()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(14982, 8)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">RMM1</th>
+<th data-quarto-table-cell-role="th">RMM2</th>
+<th data-quarto-table-cell-role="th">Phase</th>
+<th data-quarto-table-cell-role="th">Amplitude</th>
+<th data-quarto-table-cell-role="th">TresMariasPrec.Rainfall</th>
+<th data-quarto-table-cell-role="th">PhaseName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>3137</td>
+<td>1983-01-01</td>
+<td>0.779252</td>
+<td>-0.44277</td>
+<td>4</td>
+<td>0.896260</td>
+<td>22.1</td>
+<td>MC4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>3138</td>
+<td>1983-01-02</td>
+<td>0.636609</td>
+<td>-0.44866</td>
+<td>4</td>
+<td>0.778824</td>
+<td>15.6</td>
+<td>MC4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3139</td>
+<td>1983-01-03</td>
+<td>0.743517</td>
+<td>-0.42285</td>
+<td>4</td>
+<td>0.855349</td>
+<td>22.2</td>
+<td>MC4</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>3140</td>
+<td>1983-01-04</td>
+<td>0.738661</td>
+<td>-0.30370</td>
+<td>4</td>
+<td>0.798657</td>
+<td>11.7</td>
+<td>MC4</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>3141</td>
+<td>1983-01-05</td>
+<td>0.624721</td>
+<td>-0.20244</td>
+<td>4</td>
+<td>0.656702</td>
+<td>15.8</td>
+<td>MC4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>Here’s a basic description of the fields:</p>
+<ul>
+<li><strong>First column (unnamed)</strong>: not important, we’ll drop it soon.</li>
+<li><strong>Date</strong>: date</li>
+<li><strong>RMM1</strong>: the first component of the Wheeler and Hendon (2004) index (see details below)</li>
+<li><strong>RMM2</strong>: the second component of the RMM index (see details below)</li>
+<li><strong>Phase</strong>: the phase of the Madden-Julian Oscillation (MJO). The phase indicates on which sector around the equator the convective wave of the MJO is positioned. There are 8 sectors/phases. This column is directly related to the eight column.</li>
+<li><strong>Amplitude</strong>: the amplitude of the convection/supressing phase of the MJO. The greater the amplitude the stronger is the convection/supressing. Where there is either convection or supression depends on the phase.</li>
+<li><strong>TresMariasPrec.Rainfall</strong>: average daily precipitation over the Três Marias watershed</li>
+<li><strong>PhaseName</strong>: the phases as categories rather than numbers.</li>
+</ul>
+<p><span class="citation" data-cites="wheeler2004all">(<a href="#ref-wheeler2004all" role="doc-biblioref">Wheeler and Hendon 2004</a>)</span> said…</p>
+<p>Let’s clean up the data a bit: remove the first column…</p>
+<div id="77010833" class="cell custompython" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.drop(<span class="st">'Unnamed: 0'</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>Date</code> is a very important field, we need to take special care of it. For our purposes it should be the index of the data frame and we need to ensure it is of type datetime64.</p>
+<div id="17aca78c" class="cell custompython" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Date'</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df.set_index(<span class="st">'Date'</span>, inplace<span class="op">=</span><span class="va">True</span>, drop<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s get some description (basic statistics) on each field of the data frame (note that only values for the numeric fields will be shown):</p>
+<div id="650ae375" class="cell custompython" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">RMM1</th>
+<th data-quarto-table-cell-role="th">RMM2</th>
+<th data-quarto-table-cell-role="th">Phase</th>
+<th data-quarto-table-cell-role="th">Amplitude</th>
+<th data-quarto-table-cell-role="th">TresMariasPrec.Rainfall</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>14982</td>
+<td>14982.000000</td>
+<td>14982.000000</td>
+<td>14982.000000</td>
+<td>14982.000000</td>
+<td>14982.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>2003-07-05 12:00:00</td>
+<td>-0.004001</td>
+<td>-0.004027</td>
+<td>4.416033</td>
+<td>1.282571</td>
+<td>3.793365</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">min</td>
+<td>1983-01-01 00:00:00</td>
+<td>-4.179793</td>
+<td>-3.362480</td>
+<td>1.000000</td>
+<td>0.013328</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>1993-04-03 06:00:00</td>
+<td>-0.688954</td>
+<td>-0.702844</td>
+<td>2.000000</td>
+<td>0.775396</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>2003-07-05 12:00:00</td>
+<td>-0.009247</td>
+<td>-0.033103</td>
+<td>4.000000</td>
+<td>1.204739</td>
+<td>0.400000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>2013-10-05 18:00:00</td>
+<td>0.701518</td>
+<td>0.675766</td>
+<td>6.000000</td>
+<td>1.715202</td>
+<td>4.500000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">max</td>
+<td>2024-01-07 00:00:00</td>
+<td>3.940610</td>
+<td>4.026421</td>
+<td>8.000000</td>
+<td>4.820095</td>
+<td>122.600000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">std</td>
+<td>NaN</td>
+<td>1.019313</td>
+<td>1.027526</td>
+<td>2.287900</td>
+<td>0.670629</td>
+<td>7.133328</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="09022838" class="cell custompython" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>phaseCT <span class="op">=</span> pd.crosstab(df[<span class="st">'Phase'</span>], df[<span class="st">'PhaseName'</span>])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>display(phaseCT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">PhaseName</th>
+<th data-quarto-table-cell-role="th">IO2</th>
+<th data-quarto-table-cell-role="th">IO3</th>
+<th data-quarto-table-cell-role="th">MC4</th>
+<th data-quarto-table-cell-role="th">MC5</th>
+<th data-quarto-table-cell-role="th">WHA1</th>
+<th data-quarto-table-cell-role="th">WP6</th>
+<th data-quarto-table-cell-role="th">WP7</th>
+<th data-quarto-table-cell-role="th">WP8</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Phase</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1958</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2038</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0</td>
+<td>1816</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0</td>
+<td>0</td>
+<td>1875</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1871</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">6</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1871</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">7</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1826</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">8</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1727</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-wheeler2004all" class="csl-entry" role="listitem">
+Wheeler, Matthew C, and Harry H Hendon. 2004. <span>“An All-Season Real-Time Multivariate MJO Index: Development of an Index for Monitoring and Prediction.”</span> <em>Monthly Weather Review</em> 132 (8): 1917–32.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

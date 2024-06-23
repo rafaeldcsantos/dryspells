@@ -1,0 +1,81 @@
+---
+title: "Preprocessing"
+format: html
+lightbox: true
+---
+
+In this notebook we will show how to preprocess and enrich the original data.
+
+## Original Data
+
+::: {.callout-important}
+It would be really nice to get some background on the data too. Where did it come from? Are there references?
+:::
+
+First we import the libraries we need.
+
+```{python}
+#| classes: custompython
+import pandas as pd 
+from IPython.display import display
+```
+
+Let's read the data!
+
+```{python}
+#| classes: custompython
+path = "Resources/Data/"
+df = pd.read_csv(path+"TresMariasPrec+MJOindex.19830101to20240107.csv")
+```
+
+How many rows and columns did we read? How does the data looks like?
+
+```{python}
+#| classes: custompython
+print(df.shape)
+display(df.head()) 
+```
+
+Here's a basic description of the fields:
+
+* **First column (unnamed)**: not important, we'll drop it soon.
+* **Date**: date
+* **RMM1**: the first component of the Wheeler and Hendon (2004) index (see details below)
+* **RMM2**: the second component of the RMM index (see details below)
+* **Phase**: the phase of the Madden-Julian Oscillation (MJO). The phase indicates on which sector around the equator the convective wave of the MJO is positioned. There are 8 sectors/phases. This column is directly related to the eight column.
+* **Amplitude**: the amplitude of the convection/supressing phase of the MJO. The greater the amplitude the stronger is the convection/supressing. Where there is either convection or supression depends on the phase.
+* **TresMariasPrec.Rainfall**: average daily precipitation over the Três Marias watershed
+* **PhaseName**: the phases as categories rather than numbers.
+
+[@wheeler2004all] said...
+
+Let's clean up the data a bit: remove the first column...
+
+```{python}
+#| classes: custompython
+df.drop('Unnamed: 0', axis=1, inplace=True)
+```
+
+`Date` is a very important field, we need to take special care of it. For our purposes it should be the index of the data frame and we need to ensure it is of type datetime64.
+
+```{python}
+#| classes: custompython
+df['Date'] = pd.to_datetime(df['Date'])
+df.set_index('Date', inplace=True, drop=False)
+```
+
+Let's get some description (basic statistics) on each field of the data frame (note that only values for the numeric fields will be shown):
+
+```{python}
+#| classes: custompython
+df.describe()
+```
+
+
+```{python}
+#| classes: custompython
+phaseCT = pd.crosstab(df['Phase'], df['PhaseName'])
+display(phaseCT)
+```
+
+

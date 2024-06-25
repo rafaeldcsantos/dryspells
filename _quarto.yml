@@ -15,11 +15,12 @@ website:
       - preprocessing.qmd  
       - eda.qmd  
       - ml1.qmd  
+      - ml2.qmd  
 
 format:
   html:
     theme:
-      - spacelab
+      - cerulean
     toc: true
     css: Resources/CSS/custom.css
     bibliography: dryspell.bib

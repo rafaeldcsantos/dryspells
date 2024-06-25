@@ -4,4 +4,10 @@ format: html
 lightbox: true
 ---
 
-# huh
+# ML1: the manual approach to machine learning. 
+
+# Decision Trees
+
+# Multilayer Perceptrons Neural Networks
+
+

@@ -4,8 +4,15 @@ format: html
 lightbox: true
 ---
 
-## These notebooks are about...
+## Why
 
 ::: {.callout-important}
-We really need a background story here!
+I'd like to have some notes on the hackathon we've participated, to have some context on where do we started to exchange ideas.
 :::
+
+## What
+
+::: {.callout-important}
+We really need a background story here! This section is what will eventually be the **introduction** of a paper.
+:::
+

@@ -9,7 +9,7 @@ In this notebook we will show how to preprocess and enrich the original data.
 ## Original Data
 
 ::: {.callout-important}
-It would be really nice to get some background on the data too. Where did it come from? Are there references?
+It would be really nice to get some background on the data too. Where did it come from? Are there references? We'll go ahead with replicating/extending what was on the Google Colab notebooks, but I'd like to add more text.
 :::
 
 First we import the libraries we need.
@@ -79,3 +79,4 @@ display(phaseCT)
 ```
 
 
+## Many more to follow -- this notebook will contain all the preprocessing/enriching of the data.

@@ -4,3 +4,5 @@ lightbox: true
 ---
 
 # Exploratory Data Analysis
+
+All the graphics and basic statistics we can get!

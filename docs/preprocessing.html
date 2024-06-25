@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-06-23">
+<meta name="dcterms.date" content="2024-06-25">
 
 <title>DrySpells - Preprocessing</title>
 <style>
@@ -188,6 +188,12 @@ div.csl-indent {
  <span class="menu-text">Machine Learning (Part 1)</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ml2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Machine Learning (Part 2)</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -199,6 +205,7 @@ div.csl-indent {
    
   <ul>
   <li><a href="#original-data" id="toc-original-data" class="nav-link active" data-scroll-target="#original-data">Original Data</a></li>
+  <li><a href="#many-more-to-follow-this-notebook-will-contain-all-the-preprocessingenriching-of-the-data." id="toc-many-more-to-follow-this-notebook-will-contain-all-the-preprocessingenriching-of-the-data." class="nav-link" data-scroll-target="#many-more-to-follow-this-notebook-will-contain-all-the-preprocessingenriching-of-the-data.">Many more to follow – this notebook will contain all the preprocessing/enriching of the data.</a></li>
   </ul>
 </nav>
     </div>
@@ -218,7 +225,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 23, 2024</p>
+      <p class="date">June 25, 2024</p>
     </div>
   </div>
   
@@ -243,21 +250,21 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It would be really nice to get some background on the data too. Where did it come from? Are there references?</p>
+<p>It would be really nice to get some background on the data too. Where did it come from? Are there references? We’ll go ahead with replicating/extending what was on the Google Colab notebooks, but I’d like to add more text.</p>
 </div>
 </div>
 <p>First we import the libraries we need.</p>
-<div id="9a917af1" class="cell custompython" data-execution_count="1">
+<div id="4188d5f7" class="cell custompython" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s read the data!</p>
-<div id="3ea1cfef" class="cell custompython" data-execution_count="2">
+<div id="cbcdfce0" class="cell custompython" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"Resources/Data/"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(path<span class="op">+</span><span class="st">"TresMariasPrec+MJOindex.19830101to20240107.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>How many rows and columns did we read? How does the data looks like?</p>
-<div id="71785f89" class="cell custompython" data-execution_count="3">
+<div id="82cd9088" class="cell custompython" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.shape)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>display(df.head()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -358,18 +365,18 @@ Important
 </ul>
 <p><span class="citation" data-cites="wheeler2004all">(<a href="#ref-wheeler2004all" role="doc-biblioref">Wheeler and Hendon 2004</a>)</span> said…</p>
 <p>Let’s clean up the data a bit: remove the first column…</p>
-<div id="77010833" class="cell custompython" data-execution_count="4">
+<div id="c04c2a91" class="cell custompython" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.drop(<span class="st">'Unnamed: 0'</span>, axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>Date</code> is a very important field, we need to take special care of it. For our purposes it should be the index of the data frame and we need to ensure it is of type datetime64.</p>
-<div id="17aca78c" class="cell custompython" data-execution_count="5">
+<div id="7f1971bf" class="cell custompython" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Date'</span>])</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df.set_index(<span class="st">'Date'</span>, inplace<span class="op">=</span><span class="va">True</span>, drop<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s get some description (basic statistics) on each field of the data frame (note that only values for the numeric fields will be shown):</p>
-<div id="650ae375" class="cell custompython" data-execution_count="6">
+<div id="0db3d613" class="cell custompython" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 <div>
 
@@ -466,7 +473,7 @@ Important
 </div>
 </div>
 </div>
-<div id="09022838" class="cell custompython" data-execution_count="7">
+<div id="fdeb2d14" class="cell custompython" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>phaseCT <span class="op">=</span> pd.crosstab(df[<span class="st">'Phase'</span>], df[<span class="st">'PhaseName'</span>])</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>display(phaseCT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -595,12 +602,15 @@ Important
 </div>
 </div>
 </div>
+</section>
+<section id="many-more-to-follow-this-notebook-will-contain-all-the-preprocessingenriching-of-the-data." class="level2">
+
 
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Many more to follow – this notebook will contain all the preprocessing/enriching of the data.</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-wheeler2004all" class="csl-entry" role="listitem">
 Wheeler, Matthew C, and Harry H Hendon. 2004. <span>“An All-Season Real-Time Multivariate MJO Index: Development of an Index for Monitoring and Prediction.”</span> <em>Monthly Weather Review</em> 132 (8): 1917–32.
 </div>
